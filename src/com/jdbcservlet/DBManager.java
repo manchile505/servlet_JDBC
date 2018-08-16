@@ -8,37 +8,37 @@ public class DBManager {
 	//private String dB;
 	private String userName;
 	private String pw;
-	private String dbUrl = "jdbc:mysql://localhost/testt";
+	private String dbUrl = "jdbc:mysql://localhost/test";
 	Connection conn = null;
-    boolean isConnected = false;
-    
+	boolean isConnected = false;
+
 	DBManager () {
 		createDBConnection();
-
 	}
 
 
 	private void createDBConnection() {
 
-
 		try {
-			// The newInstance() call is a work around for some
-			// broken Java implementations
 
+			// load class
 			Class.forName("com.mysql.jdbc.Driver");	
 			try {
 				conn =  DriverManager.getConnection(dbUrl,userName,pw);
 				isConnected = true;
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+
+				// handle any errors
+				System.out.println("SQLException: " + e.getMessage());
+				System.out.println("SQLState: " + e.getSQLState());
+				System.out.println("VendorError: " + e.getErrorCode());
 			}
 
 		} catch (Exception ex) {
 			// handle the error
 		}
-      
-		
+
+
 
 	}
 
